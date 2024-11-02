@@ -1,0 +1,48 @@
+server:
+  port: 8080  # API Gateway portu
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: customerservice-swagger
+            uri: http://localhost:8081  # customerservice microservisinin adresi
+            predicates:
+              - Path=/customer-service/v3/api-docs
+            filters:
+              - SetPath=/v3/api-docs
+
+          - id: orderservice-swagger
+            uri: http://localhost:8082  # orderservice microservisinin adresi
+            predicates:
+              - Path=/order-service/v3/api-docs
+            filters:
+              - SetPath=/v3/api-docs
+
+          - id: customerservice
+            uri: http://localhost:8081  # customerservice microservisinin adresi
+            predicates:
+              - Path=/customer-service/**
+            filters:
+              - RewritePath=/customer-service/(?<segment>.*), /$\\{segment}
+
+          - id: orderservice
+            uri: http://localhost:8082  # orderservice microservisinin adresi
+            predicates:
+              - Path=/order-service/**
+            filters:
+              - RewritePath=/order-service/(?<segment>.*), /$\\{segment}
+jwt:
+  expiration: 600000
+  key: C53m0R5fXD2VXQwoWbV6Rhqk44l/fY0n6rk67028lFw9ZCU9nIpc0V6N1S7hNGHSj6nNGKszIHMUCGxOwatyQXtcA+HmkiCGtO19bhhVEEhfDVxdYP/PLDTnolseuAMP9bYYmXPUXZ/79iRq90kIsM37Uiw/Q3xFFjHObjzzD78ZP8ucmaavcEBTeW9dpOieMvyS7Zdz4ut/slMtIpq1gKBKBw+r3e3sUbUGmoINGJoBsPEQflbE10J1aTRLLREq1EmUNw9VZmVOtCrVErwKawkQFVniWieqAeQze+OY1BfkjYI11lhO7Y7LyOl3Vx35EezWhrYj8ceajsnEr7CIMg==
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html  # Merkezi Swagger UI'ye eri?im yolu
+    urls:
+      - name: customerservice
+        url: /customer-service/v3/api-docs  # customerservice Swagger JSON dokümantasyonu
+      - name: orderservice
+        url: /order-service/v3/api-docs  # orderservice Swagger JSON dokümantasyonu
