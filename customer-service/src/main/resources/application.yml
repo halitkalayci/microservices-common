@@ -1,4 +1,24 @@
 spring:
+  cloud:
+    stream:
+      defaultBinder: rabbit
+      function:
+        bindings:
+          sendCustomerEvent-out-0: customer-topic
+      bindings:
+        sendCustomerEvent-out-0:
+          destination: customer-topic
+          content-type: application/json
+
+      kafka:
+        binder:
+          brokers: localhost:9092
+
+      rabbit:
+        binder:
+          addresses: localhost:5672
+          username: guest
+          password: guest
   application:
     name: customer-service
   datasource:

@@ -7,6 +7,7 @@ import io.github.halitkalayci.customerservice.persistence.IndividualCustomerRepo
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Component;
 
 @Getter
@@ -29,6 +30,8 @@ public class CreateIndividualCustomerCommand implements Command<CreatedIndividua
     private final IndiviualCustomerMapper indiviualCustomerMapper;
     private final IndividualCustomerRepository individualCustomerRepository;
 
+    private final StreamBridge streamBridge;
+
     @Override
     public CreatedIndividualCustomerResponse handle(CreateIndividualCustomerCommand createIndividualCustomerCommand) {
       IndividualCustomer individualCustomer =
@@ -36,6 +39,8 @@ public class CreateIndividualCustomerCommand implements Command<CreatedIndividua
               .createCustomerFromCommand(createIndividualCustomerCommand);
 
       individualCustomer = individualCustomerRepository.save(individualCustomer);
+
+      streamBridge.send("sendCustomerEvent-out-0", "merhaba");
 
       return indiviualCustomerMapper.createIndividualCustomerResponse(individualCustomer);
     }
