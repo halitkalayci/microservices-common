@@ -7,8 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="discovery-server" />
+        <module name="ms-common" />
         <module name="gateway-server" />
         <module name="ms-core" />
+        <module name="ms.core" />
+        <module name="identity-service" />
+        <module name="notification-service" />
       </profile>
       <profile name="Annotation profile for customer-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -24,12 +30,21 @@
         <module name="order-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="customer-service" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
       <module name="gateway-server" options="-parameters" />
+      <module name="identity-service" options="-parameters" />
       <module name="ms-core" options="-parameters" />
+      <module name="ms.core" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
     </option>
   </component>

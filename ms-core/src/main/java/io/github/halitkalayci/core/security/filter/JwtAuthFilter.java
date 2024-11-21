@@ -1,5 +1,7 @@
 package io.github.halitkalayci.core.security.filter;
 
+import an.awesome.pipelinr.repack.org.checkerframework.checker.units.qual.C;
+import io.github.halitkalayci.core.security.dto.CustomPrincipal;
 import io.github.halitkalayci.core.security.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,6 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -51,8 +54,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     .toList();
           }
 
+          UUID userId = jwtService.getClaims(jwt).get("userId", UUID.class);
+
+          CustomPrincipal principal = new CustomPrincipal(userId, username);
+
           UsernamePasswordAuthenticationToken authenticationToken =
-                  new UsernamePasswordAuthenticationToken(username, null, authorities);
+                  new UsernamePasswordAuthenticationToken(principal, jwt, authorities);
           authenticationToken
                   .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

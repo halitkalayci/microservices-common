@@ -30,3 +30,16 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+  config-server:
+    image: etiyams.config-server
+    build: ./config-server
+    ports:
+      - "8001:8001"
+  eureka-server:
+    image: etiyams.discovery-server
+    build: ./discovery-server
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_CLOUD_CONFIG_PROFILE: docker
+      CONFIG_URL: http://config-server:8001

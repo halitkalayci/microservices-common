@@ -10,9 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdatedIndividualCustomerResponse {
-  private UUID id;
   private String firstName;
   private String lastName;
-  private String email;
   private String phone;
 }

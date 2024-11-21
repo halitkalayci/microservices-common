@@ -13,6 +13,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class JwtService
@@ -21,6 +22,12 @@ public class JwtService
   private String SECRET_KEY;
   @Value("${jwt.expiration}")
   private long EXPIRATION;
+
+  public AccessToken generateToken(String userName, UUID id) {
+    Map<String,Object> claims = new HashMap<>();
+    claims.put("userId",id);
+    return createToken(claims,userName);
+  }
 
   public AccessToken generateToken(String userName) {
     Map<String,Object> claims = new HashMap<>();
@@ -39,7 +46,6 @@ public class JwtService
   public String extractUser(String token) {
     return getClaims(token).getSubject();
   }
-
   public Claims getClaims(String token)
   {
     return Jwts

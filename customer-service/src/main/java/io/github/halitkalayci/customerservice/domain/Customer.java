@@ -20,6 +20,5 @@ public class Customer {
   @GeneratedValue()
   @UuidGenerator
   private UUID id;
-  private String email;
   private String phone;
 }
