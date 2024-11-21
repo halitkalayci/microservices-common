@@ -1,0 +1,5 @@
+io\github\halitkalayci\dto\auth\request\LoginRequest.class
+io\github\halitkalayci\dto\auth\response\RegisterResponse.class
+io\github\halitkalayci\Main.class
+io\github\halitkalayci\event\customer\CustomerCreatedEvent.class
+io\github\halitkalayci\dto\auth\request\RegisterRequest.class

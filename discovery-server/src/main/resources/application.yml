@@ -1,0 +1,15 @@
+config:
+  url: http://localhost:8001
+
+spring:
+  application:
+    name: discovery-server
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: ${config.url}
+      profile: dev
+      label: master
+server:
+  port: 8888

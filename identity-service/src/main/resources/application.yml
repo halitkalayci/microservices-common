@@ -1,0 +1,12 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: identity-service
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://localhost:8001
+      profile: dev
+      label: master

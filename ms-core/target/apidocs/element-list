@@ -1,0 +1,17 @@
+io.github.halitkalayci
+io.github.halitkalayci.core.annotation
+io.github.halitkalayci.core.api.config
+io.github.halitkalayci.core.api.controllers
+io.github.halitkalayci.core.api.docs
+io.github.halitkalayci.core.application.configuration
+io.github.halitkalayci.core.application.pipeline.authorization
+io.github.halitkalayci.core.exception.detail
+io.github.halitkalayci.core.exception.detail.custom
+io.github.halitkalayci.core.exception.handler
+io.github.halitkalayci.core.exception.types
+io.github.halitkalayci.core.feign
+io.github.halitkalayci.core.security.configuration
+io.github.halitkalayci.core.security.dto
+io.github.halitkalayci.core.security.filter
+io.github.halitkalayci.core.security.service
+io.github.halitkalayci.core.security.util

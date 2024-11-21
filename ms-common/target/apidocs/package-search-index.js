@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.halitkalayci"},{"l":"io.github.halitkalayci.dto.auth.request"},{"l":"io.github.halitkalayci.dto.auth.response"},{"l":"io.github.halitkalayci.event.customer"}];updateSearchResults();
